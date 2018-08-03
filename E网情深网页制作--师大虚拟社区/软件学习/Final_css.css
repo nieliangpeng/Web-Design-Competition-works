@@ -1,0 +1,79 @@
+* {
+font-size:12px;
+margin:0px;
+padding:0px;
+}
+body{
+	background-image: url(images/bodybgi.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+#nav{
+margin-top: 20px;
+margin-left: 50px;
+list-style:none;
+line-height:27px;
+display: block;
+}
+#nav a:link,#nav a:visited{
+display:block;
+width:100px;
+color: #666;
+text-align:center;
+text-decoration:none;
+background:#CCC;
+}
+#nav a:hover{
+color: #FFF;
+text-decoration: underline;
+font-weight: bold;
+background:#999;
+}
+#nav li{
+float:left;
+width: 100px;
+}
+#nav li ul li a:hover{
+background:#C00;
+}
+
+#nav li ul{
+display:none;
+}
+#nav li.subMenuDisplay ul{
+display:block;
+}
+
+#nav select{
+float:left;
+width: 100px;
+height: 27px;
+}
+#nav select ul li a:hover{
+background:#C00;
+}
+
+#nav select ul{
+display:none;
+}
+#nav li.subMenuDisplay ul{
+display:block;
+}
+/*图片立体旋转*/
+#show{
+	position:relative;
+	margin:20px auto;
+	width:800px;
+	border:1px solid #999999;
+	margin-left: 100px;
+	margin-top: -20px;
+	z-index: -2;
+}
+.item{
+	position:absolute;
+	height:40px;
+	width:60px;
+	background:#999999;
+	border:1px solid #eeeeee;
+	cursor:pointer;
+}

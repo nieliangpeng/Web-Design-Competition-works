@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>The_Final</title>
+	<link rel="stylesheet" type="text/css" href="Final_css.css" />
+</head>
+<body>
+	<audio src="audio/Humoresque.mp3" hidden="true" autoplay="true" loop="true"></audio> 
+	<div>
+<h3 style="color: white">这学期额外学得的一点小知识:)</h3>
+	<ul id="nav">
+
+		<select style="">
+		<ul>
+		<option selected="selected"><a href="#">OpenCV</a></option>
+		<option><a href="#">人脸识别</a></option>
+		<option><a href="#">移动物体跟踪</a></option>
+		<option><a href="#">支持向量机</a></option>
+		</select>
+
+		<li><a href="#">MachineLearning</a>
+		<ul>
+			<li class="disp"><a href="#">Gradient Descent</a></li>
+			<li class="disp"><a href="#">卷积神经网络(CNN)</a></li>
+			<li class="disp"><a href="#">循环神经网络(TNN)</a></li>
+		</ul>
+</li>
+		<select style="">
+		<ul>
+		<option selected="selected"><a href="#">Linux</a></option>
+		<option><a href="#">进程管理</a></option>
+		<option><a href="#">RedHat运行级别的控制</a></option>
+		<option><a href="#">vim</a></option>
+		</select>
+
+	</ul>
+	</div>
+	
+	<div style="margin-left: 300px; margin-top: 20px; ">
+		<img src="images/图片1.png" id="logo" style="position:absolute; left:300; top: 200; z-index: -1">
+		<input type="button" value="Pause?" style="position: relative; left: 220px; top: 250px; background-color: #666; width: 100px; height: 50px; font-size: 2em; font-style: oblique;"  onclick="change(this)" />
+		<input type="button" value="+" id="acc" style="position: relative; left: 157px; top: 213px; background-color: #666; width: 30px; height: 30px; font-size: 2em; font-style: oblique;"   onclick="accelerate()" />
+		<input type="button" value="-" id="bra" style="position: relative; left: 150px; top: 213px; background-color: #666; width: 30px; height: 30px; font-size: 2em; font-style: oblique;" onclick="brake()" />
+	</div>
+
+	<br />
+
+<div id="show">
+ <div class="item" style="background-color: rgb(0,0,0); border-color: rgb(255,255,255)">1</div>
+ <div class="item" style="background-color: rgb(0,0,153); border-color: rgb(255,153,0)">6</div>
+ <div class="item" style="background-color: rgb(0,0,255); border-color: rgb(255,0,153)">7</div>
+ <div class="item" style="background-color: rgb(0,153,0); border-color: rgb(255,0,0)">4</div>
+ <div class="item" style="background-color: rgb(0,255,0); border-color: rgb(153,255,0)">5</div>
+ <div class="item" style="background-color: rgb(153,0,0); border-color: rgb(153,153,255)">2</div>
+ <div class="item" style="background-color: rgb(153,0,153); border-color: rgb(153,153,0)">3</div>
+ <div class="item" style="background-color: rgb(153,0,255); border-color: rgb(153,0,255)">8</div>
+ <div class="item" style="background-color: rgb(153,153,0); border-color: rgb(153,0,153)">9</div>
+ <div class="item" style="background-color: rgb(153,153,255); border-color: rgb(153,0,0)">0</div>
+ <div class="item" style="background-color: rgb(153,255,0); border-color: rgb(0,255,0)">a</div>
+ <div class="item" style="background-color: rgb(255,0,0); border-color: rgb(0,153,0)">b</div>
+ <div class="item" style="background-color: rgb(255,0,153); border-color: rgb(0,0,255)">1</div>
+ <div class="item" style="background-color: rgb(255,153,0); border-color: rgb(0,0,153)">2</div>
+ <div class="item" style="background-color: rgb(255,255,255); border-color: rgb(0,0,0)">3</div>
+
+<span style=" float: left; margin-left: -100px; margin-top: 98px;"><input type="text" id="text_content" value="请把你的留言写在这儿,我会收到的!!!!!" style="font-size: 1.5em; width: 300px; height: 30px; margin-top: 450px; display: inline;" onblur="checkUsername(this)"><span id="errorTip" style=""></span></span>
+
+</div>
+<input id="l" type="button" value="<-left" style="position: absolute;left: 830px; top: 400px; width: 70px; font-size: 1.5em;" />
+<input id="r" type="button" value="right->" style="position: absolute;left: 900px; top: 400px; width: 70px; font-size: 1.5em;" />
+
+<div style="float: right; margin-top: 545px; color: white">郑鹏</div>
+<div style="float: right; border: 1px red;">
+	<h2 style="color: white; font-style: italic; font-size: 2em;" >相册</h2>
+	<input type="button" id="p1" value="Andrew Ng"><br />
+	<input type="button" id="p2" value="Linux之父"><br />
+	<input type="button" id="p3" value="OpenCV经典例图lena"><br />
+	<input type="button" id="p4" value="<<此时的你>>"><br />
+	<img src="images/default.jpg" id="changeable_image">
+</div>
+</body>
+
+<script type="text/javascript">
+<!--Logo旋转控制-->
+	var the_timer, the_image, color = 0;
+	var go_or_stop = 'Pause?';
+	var	logo = document.getElementById("logo");
+	var bias = 0;
+	var speed = 1.0;
+	time = setInterval("spin()", 50)
+	function spin() {
+		if (go_or_stop == 'Pause?') {
+			bias = (bias+speed)%360; 
+			logo.style.transform = 'rotate('+bias+'deg)';
+		}
+	}
+	function change(t){
+		if (color % 3 == 0) {
+			t.style.backgroundColor = "red";
+		}
+		if (color % 3 == 1) {
+			t.style.backgroundColor = "green";
+		}
+		if (color % 3 == 2) {
+			t.style.backgroundColor = "blue";
+		}
+		color ++;
+		if (t.value == 'Pause?') {
+			t.value = 'Go on?';
+		}
+		else{
+			t.value = 'Pause?';
+		}
+		go_or_stop = t.value;
+	}
+	function accelerate(){
+		speed *= 2;
+	}
+	function brake(){
+		speed /= 2;
+	}
+window.onload=function(){
+<!--隐藏下拉列表-->
+
+	var liNodes = document.getElementsByTagName("li");
+	for (var i=0; i<liNodes.length; i++)
+	{
+		liNodes[i].onmouseover = function(){
+			this.className = "subMenuDisplay";
+		}
+		liNodes[i].onmouseout = function(){
+			this.className = "";
+		}
+	}
+
+<!--立体旋转-->
+	var len;
+	var showerObj;
+	var listObj;
+	var showerWidth=800;
+	var showerHeight=400;
+	var r;
+	var cR=0;
+	var ccR=0;
+	var timer=0;
+	showerObj=document.getElementById("show");
+	listObj=showerObj.getElementsByTagName("div");
+	len=listObj.length;
+	r=Math.PI/180*360/len;
+	for(var i=0;i<len;i++){
+		var item=listObj[i];
+		item.style.top=showerHeight/2+Math.sin(r*i)*showerWidth/2-20+"px";
+		item.style.left=showerWidth/2+Math.cos(r*i)*showerWidth/2-30+"px";
+		item.rotate=(r*i+2*Math.PI)%(2*Math.PI);
+	item.onclick=function(){
+		cR=Math.PI/2-this.rotate;
+		timer || (timer=setInterval(rotate,10));
+
+	}
+
+	}
+	var rX=showerObj.offsetLeft+showerWidth/2;
+	var ry=showerObj.offsetTop+showerHeight/2;
+
+	var rotate=function(){
+		ccR=(ccR+2*Math.PI)%(2*Math.PI);
+		if(cR-ccR<0) cR=cR+2*Math.PI;
+		if(cR-ccR<Math.PI){
+			ccR=ccR+(cR-ccR)/19;
+		}else{
+			ccR=ccR-(2*Math.PI+ccR-cR)/19;
+
+		}
+
+		if(Math.abs((cR+2*Math.PI)%(2*Math.PI)-(ccR+2*Math.PI)%(2*Math.PI))<Math.PI/720){
+			ccR=cR;
+			clearInterval(timer);
+			timer=0;
+		}
+
+		for(var i=0;i<len;i++){
+			var item=listObj[i];
+			var w,h;
+			var sinR=Math.sin(r*i+ccR);
+			var cosR=Math.cos(r*i+ccR);
+			w=60+0.6*60*sinR;
+			h=(40+0.6*40*sinR);
+			item.style.cssText +=";width:"+w+"px;height:"+h+"px;top:"+parseInt(showerHeight/2+sinR*showerWidth/2/3-w/2)+"px;left:"+parseInt(showerWidth/2+cosR*showerWidth/2-h/2)+"px;z-index:"+parseInt(showerHeight/2+sinR*showerWidth/2/3-w/2)+";";
+
+		}
+	}
+
+	document.getElementById("l").onclick=function(){
+		cR=(cR+r+2*Math.PI)%(2*Math.PI);
+		timer || (timer=setInterval(rotate,10));
+	}
+	document.getElementById("r").onclick=function(){
+		cR=(cR-r+2*Math.PI)%(2*Math.PI);
+		timer || (timer=setInterval(rotate,10));
+	}
+	rotate();
+}
+
+<!--输入验证-->
+function checkUsername() { //检验是否输入用户名
+	var text_content = document.getElementById('text_content');
+	var errorTip = document.getElementById('errorTip');
+	if (text_content.value.length == 0) {
+		errorTip.style = "color:red";
+		errorTip.innerHTML = "请写入留言";
+	}
+	else{
+		errorTip.style = "color:green";
+		errorTip.innerHTML = "Valid message.";
+		alert('吗? 天真!我当然收不到, 我不会php, 也不会asp, 后台没有, 我哪里能收的到呢? @…@');
+	}	
+}
+
+<!--图片转换-->
+var changeable_image = document.getElementById('changeable_image');
+var p1 = document.getElementById('p1');
+var p2 = document.getElementById('p2');
+var p3 = document.getElementById('p3');
+var p4 = document.getElementById('p4');
+p1.onclick = function(){
+	changeable_image.src = "images/Andrew Ng.png";
+}
+p2.onclick = function(){
+	changeable_image.src = "images/Linux_father.png";
+}
+p3.onclick = function(){
+	changeable_image.src = "images/lena.jpg";
+}
+p4.onclick = function(){
+	changeable_image.src = "images/A.jpg";
+	alert('哈哈哈哈...');
+	face_painting = confirm('要先化下妆吗?');
+	if (face_painting) {
+		changeable_image.src = "images/A'.jpg";
+	}
+}
+</script>
+
+</html>
